@@ -1,6 +1,6 @@
 // ✅ pages/api/reserva.ts
 import type { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "./mongo";
+//import { connectToDatabase } from "./mongo";
 import formidable from "formidable";
 //import fs from "fs";
 import path from "path";
@@ -32,24 +32,24 @@ export default async function handler(
     const voucherFile = files.voucher as formidable.File;
     const voucherPath = "/uploads/" + path.basename(voucherFile.filepath);
 
-    const { db } = await connectToDatabase();
-    await db.collection("reservas").updateOne(
-      { dni },
-      {
-        $set: {
-          name,
-          lastname,
-          dni,
-          phone,
-          email,
-          address,
-          number,
-          voucher: voucherPath,
-          createdAt: new Date(),
-        },
-      },
-      { upsert: true }
-    );
+    //  const { db } = await connectToDatabase();
+    //   await db.collection("reservas").updateOne(
+    //     { dni },
+    //   {
+    //     $set: {
+    //      name,
+    //       lastname,
+    //       dni,
+    //       phone,
+    //        email,
+    //      address,
+    //       number,
+    //       voucher: voucherPath,
+    //       createdAt: new Date(),
+    //      },
+    //    },
+    //    { upsert: true }
+    //  );
 
     await sendEmail({
       to: email as string,
