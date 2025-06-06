@@ -1,10 +1,10 @@
 // ✅ pages/api/reserva.ts
 import type { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "@/lib/mongo";
+import { connectToDatabase } from "./mongo";
 import formidable from "formidable";
-import fs from "fs";
+//import fs from "fs";
 import path from "path";
-import { sendEmail } from "@/lib/email";
+import { sendEmail } from "./email";
 
 export const config = {
   api: {

@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import ModalForm from "@/components/ModalForm";
-import Header from "@/components/Header";
+//import Header from "@/components/Header";
 import NumberGrid from "@/components/NumberGrid";
 
 export default function HomePage() {
