@@ -1,12 +1,17 @@
 // ✅ app/premios/page.tsx — Página de Premios
+
+import Image from "next/image";
+
 export default function PremiosPage() {
   return (
     <main className="min-h-screen bg-[#fefaf5] px-4 py-6 text-center">
       <section className="max-w-3xl mx-auto">
         {/* Imagen completa de los premios */}
-        <img
+        <Image
           src="https://res.cloudinary.com/dktfsty7b/image/upload/v1749148506/2_zhujhj.png"
           alt="Premios"
+          width={1200}
+          height={700}
           className="rounded-lg w-full shadow-md mb-6"
         />
 
