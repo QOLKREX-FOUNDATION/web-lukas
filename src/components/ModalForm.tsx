@@ -1,6 +1,6 @@
 // ✅ components/ModalForm.tsx
 "use client";
-
+import "@/styles/modal.css";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -49,80 +49,78 @@ export default function ModalForm({ number, onClose }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-xl p-6 w-[90%] max-w-md relative">
-        <h2 className="text-2xl font-bold mb-4 text-[#a56d26]">
-          Reservar número #{number}
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4 text-left">
-          <input
-            name="dni"
-            placeholder="DNI"
-            required
-            className="w-full border px-3 py-2 rounded"
-            onChange={handleChange}
+    <div className="modal-overlay">
+      <div className="modal-content">
+        {/* Formulario lado izquierdo */}
+        <div className="modal-left">
+          <h2 className="text-xl font-bold text-[#a56d26] mb-2">
+            Reservar número #{number}
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              name="dni"
+              placeholder="DNI"
+              required
+              onChange={handleChange}
+            />
+            <input
+              name="name"
+              placeholder="Nombres"
+              required
+              onChange={handleChange}
+            />
+            <input
+              name="lastname"
+              placeholder="Apellidos"
+              required
+              onChange={handleChange}
+            />
+            <input
+              name="address"
+              placeholder="Dirección"
+              required
+              onChange={handleChange}
+            />
+            <input
+              name="phone"
+              placeholder="Teléfono"
+              required
+              onChange={handleChange}
+            />
+            <input
+              name="email"
+              type="email"
+              placeholder="Correo electrónico"
+              required
+              onChange={handleChange}
+            />
+            <div className="text-sm text-gray-700 mb-1">
+              Yapear o Plinear al número:{" "}
+              <span className="font-bold">933294369</span>
+            </div>
+            <input
+              type="file"
+              name="voucher"
+              accept="image/*"
+              required
+              onChange={handleChange}
+            />
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+
+        {/* Imagen caricatura lado derecho */}
+        <div className="modal-right">
+          <img
+            src="https://res.cloudinary.com/dktfsty7b/image/upload/v1748911635/icono1_cvcaa2.png"
+            alt="Lukas caricatura"
           />
-          <input
-            name="name"
-            placeholder="Nombres"
-            required
-            className="w-full border px-3 py-2 rounded"
-            onChange={handleChange}
-          />
-          <input
-            name="lastname"
-            placeholder="Apellidos"
-            required
-            className="w-full border px-3 py-2 rounded"
-            onChange={handleChange}
-          />
-          <input
-            name="address"
-            placeholder="Dirección"
-            required
-            className="w-full border px-3 py-2 rounded"
-            onChange={handleChange}
-          />
-          <input
-            name="phone"
-            placeholder="Teléfono"
-            required
-            className="w-full border px-3 py-2 rounded"
-            onChange={handleChange}
-          />
-          <input
-            name="email"
-            type="email"
-            placeholder="Correo electrónico"
-            required
-            className="w-full border px-3 py-2 rounded"
-            onChange={handleChange}
-          />
-          <div className="text-sm text-gray-700">
-            Yapear o Plinear al número:{" "}
-            <span className="font-bold">933294369</span>
-          </div>
-          <input
-            type="file"
-            name="voucher"
-            accept="image/*"
-            required
-            className="w-full border p-2 rounded"
-            onChange={handleChange}
-          />
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded font-bold hover:bg-green-700"
-          >
-            Enviar
-          </button>
-        </form>
-        <button
-          onClick={() => onClose(false)}
-          className="mt-4 text-sm text-gray-500 underline block text-center w-full"
-        >
+        </div>
+
+        {/* Botón cerrar */}
+        <span className="modal-close" onClick={() => onClose(false)}>
           Cerrar
-        </button>
+        </span>
       </div>
     </div>
   );

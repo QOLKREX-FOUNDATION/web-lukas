@@ -1,0 +1,104 @@
+/* === modal.css === */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(245, 241, 241, 0.6);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-image: url("https://res.cloudinary.com/dktfsty7b/image/upload/v1749492077/ticket-rifa2_i8vzun.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 90%;
+  max-width: 600px;
+  height: 400px;
+  display: flex;
+  padding: 2rem;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-left {
+  flex: 2;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-left input[type="text"],
+.modal-left input[type="email"],
+.modal-left input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.modal-left button {
+  padding: 0.6rem;
+  background-color: #9333ea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-left button:hover {
+  background-color: #7e22ce;
+}
+
+.modal-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-right img {
+  max-width: 100%;
+  max-height: 90%;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 0.8rem;
+  color: #444;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    background-size: 100% auto;
+  }
+
+  .modal-left {
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .modal-right {
+    justify-content: center;
+  }
+
+  .modal-right img {
+    max-height: 150px;
+  }
+}

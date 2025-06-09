@@ -1,0 +1,88 @@
+/* === styles/home.css === */
+.home-wrapper {
+  background-image: url("https://res.cloudinary.com/dktfsty7b/image/upload/v1749165282/1_tujkvp.png");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home-content {
+  min-height: 700px;
+  /* padding: 1rem;*/
+  width: 100%;
+  padding-top: 10rem;
+  background-color: transparent;
+}
+.home-section {
+  max-width: 1024px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 2rem;
+}
+.lukas-bio {
+  margin-top: 43rem; /* Espacio hacia arriba (80px aprox) */
+  margin-bottom: -11rem; /* Espacio hacia abajo (32px aprox) */
+  padding: 1rem; /* Espacio interior (16px) */
+  background-color: rgba(255, 255, 255, 0); /* Fondo blanco semitransparente */
+  border-radius: 12px; /* Bordes redondeados */
+  color: #155e75; /* Color de texto (verde-azulado) */
+  line-height: 1.7; /* Espaciado entre líneas */
+  max-width: 700px; /* Ancho máximo del div */
+  margin-left: auto; /* Centra horizontalmente */
+  margin-right: auto;
+  font-size: 0.75rem; /* Tamaño de fuente (casi mediano) */
+  text-align: justify;
+}
+.tiktok-link {
+  color: #3b82f6;
+  font-weight: 500;
+  margin-left: 0.25rem;
+  text-decoration: underline;
+}
+.rifa-grid {
+  margin-top: -5rem;
+  margin-bottom: -10rem;
+}
+
+.rifa-precios {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 0.5rem;
+}
+
+.rifa-info {
+  font-style: italic;
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.rifa-link-container {
+  margin-top: 1rem;
+}
+
+.rifa-link {
+  font-weight: bold;
+  color: #2563eb;
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+/* Responsive para móvil */
+@media (max-width: 640px) {
+  .lukas-bio {
+    font-size: 0.85rem;
+    margin-top: 3rem;
+  }
+
+  .rifa-precios {
+    font-size: 1rem;
+  }
+
+  .rifa-link {
+    font-size: 1.2rem;
+  }
+}

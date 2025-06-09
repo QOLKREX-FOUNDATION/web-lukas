@@ -15,7 +15,7 @@ interface Props {
 
 export default function NumberGrid({ numbers, onSelect }: Props) {
   return (
-    <div className="grid grid-cols-5 md:grid-cols-10 gap-4 p-30">
+    <div className="grid grid-cols-5 md:grid-cols-10 gap-3 p-45">
       {numbers.map(({ number, status }) => {
         let bgColor = "bg-gray-300";
         if (status === "pending") bgColor = "bg-yellow-400";
