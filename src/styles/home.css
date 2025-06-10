@@ -60,6 +60,7 @@
   color: #6b7280;
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
+  justify-content: center;
 }
 .rifa-link-container {
   margin-top: 1rem;
@@ -75,14 +76,34 @@
 @media (max-width: 640px) {
   .lukas-bio {
     font-size: 0.85rem;
-    margin-top: 3rem;
+    margin-top: 25rem;
+    padding: 0.75rem;
+    justify-content: center;
+  }
+
+  .rifa-grid {
+    margin-top: 8rem;
+    display: grid; /*✅ activa la grilla */
+    grid-template-columns: repeat(5, 550px); /* ✅ 10 columnas iguales */
+    gap: 0.4rem; /* ✅ espacio entre números (ajustable) */
+    justify-items: center; /*  ✅ centra los botones */
+    /*margin-left: -50px; Centra horizontalmente */
   }
 
   .rifa-precios {
     font-size: 1rem;
+    /*margin-left: 70px;*/
+
+    justify-items: center;
   }
 
   .rifa-link {
     font-size: 1.2rem;
+    justify-items: center;
+  }
+
+  .home-content {
+    padding: 1rem 0.5rem;
+    justify-items: center;
   }
 }
