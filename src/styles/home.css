@@ -76,7 +76,7 @@
 @media (max-width: 640px) {
   .lukas-bio {
     font-size: 0.85rem;
-    margin-top: 25rem;
+    margin-top: 18rem;
     padding: 0.75rem;
     justify-content: center;
   }
@@ -85,7 +85,7 @@
     margin-top: 4rem;
     display: grid; /*✅ activa la grilla */
     grid-template-columns: repeat(5, 48px); /* ✅ 10 columnas guales */
-    gap: 0.5rem; /* ✅ espacio entre números (ajustable) */
+    gap: 0.4rem; /* ✅ espacio entre números (ajustable) */
     justify-items: center; /*  ✅ centra los botones */
     /*margin-left: -50px; Centra horizontalmente */
   }
