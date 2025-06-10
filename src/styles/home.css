@@ -76,16 +76,17 @@
 @media (max-width: 640px) {
   .lukas-bio {
     font-size: 0.85rem;
-    margin-top: 18rem;
+    margin-top: 16rem;
     padding: 0.75rem;
     justify-content: center;
+    font-size: 0.6rem;
   }
 
   .rifa-grid {
     margin-top: 4rem;
     display: grid; /*✅ activa la grilla */
-    grid-template-columns: repeat(5, 48px); /* ✅ 10 columnas guales */
-    gap: 0.4rem; /* ✅ espacio entre números (ajustable) */
+    grid-template-columns: repeat(5, 50px); /* ✅ 10 columnas guales */
+    gap: 0.5rem; /* ✅ espacio entre números (ajustable) */
     justify-items: center; /*  ✅ centra los botones */
     /*margin-left: -50px; Centra horizontalmente */
   }
