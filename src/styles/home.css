@@ -24,7 +24,7 @@
   padding-top: 2rem;
 }
 .lukas-bio {
-  margin-top: 43rem; /* Espacio hacia arriba (80px aprox) */
+  margin-top: 40rem; /* Espacio hacia arriba (80px aprox) */
   margin-bottom: -11rem; /* Espacio hacia abajo (32px aprox) */
   padding: 1rem; /* Espacio interior (16px) */
   background-color: rgba(255, 255, 255, 0); /* Fondo blanco semitransparente */
@@ -44,12 +44,12 @@
   text-decoration: underline;
 }
 .rifa-grid {
-  margin-top: -5rem;
-  margin-bottom: -10rem;
+  margin-top: 12rem;
+  margin-bottom: 2rem;
 }
 .rifa-grid-internal {
   display: grid;
-  grid-template-columns: repeat(10, 48px);
+  grid-template-columns: repeat(10, 45px);
   gap: 0.5rem;
   justify-content: center;
 }
