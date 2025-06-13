@@ -13,17 +13,18 @@
 /* ✅ Puedes controlar el tamaño del fondo modificando width, height y background-size */
 .modal-content {
   background-image: url("https://res.cloudinary.com/dktfsty7b/image/upload/v1749492077/ticket-rifa2_i8vzun.png");
-  background-size: 100% 100%; /* Puedes cambiar por cover, contain, o ajustar en % */
+  background-size: 115% 115%; /* Puedes cambiar por cover, contain, o ajustar en % */
   background-repeat: no-repeat;
   background-position: center;
-  width: 100%;
-  max-width: 650px;
-  height: 420px;
+  width: 110%;
+  max-width: 800px;
+  height: 525px;
   display: flex;
-  padding: 2rem;
+  padding: 3rem;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
+  /*background-color: white;*/
 }
 
 /* Zona izquierda donde va el formulario */
@@ -39,14 +40,14 @@
 .modal-left input[type="text"],
 .modal-left input[type="email"],
 .modal-left input[type="file"] {
-  width: 100%;
-  padding: 0.65rem 0.75rem; /* Tamaño interno del input */
+  width: 90%;
+  padding: 0.3rem 0.75rem; /* Tamaño interno del input */
   margin-bottom: 0.6rem; /* Espacio entre inputs */
-  border: 1.5px solid #000000; /* ✅ Borde negro */
+  border: 1.5px solid #ccc; /* ✅ Borde negro */
   border-radius: 6px;
-  font-size: 0.95rem; /* ✅ Tamaño del texto */
-  background-color: white;
-  color: #000000;
+  font-size: 0.95rem; /* ✅ Borde gris */
+  /*background-color: white;
+  color: #ccc; */
 }
 
 /* ✅ Estilo del texto del placeholder */
