@@ -9,24 +9,33 @@ interface Props {
   onClose: (wasSubmitted: boolean) => void;
 }
 
+type FormState = {
+  dni: string;
+  name: string;
+  lastname: string;
+  address: string;
+  phone: string;
+  email: string;
+  voucher: File | null;
+};
+
 export default function ModalForm({ number, onClose }: Props) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const [form, setForm] = useState(() => {
-    // ✅ Recuperar del localStorage si existe
+  const [form, setForm] = useState<FormState>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("form-lukas");
-      return saved
-        ? JSON.parse(saved)
-        : {
-            dni: "",
-            name: "",
-            lastname: "",
-            address: "",
-            phone: "",
-            email: "",
-            voucher: null,
+      try {
+        const parsed = saved ? JSON.parse(saved) : null;
+        if (parsed) {
+          return {
+            ...parsed,
+            voucher: null, // Nunca se guarda el File en localStorage
           };
+        }
+      } catch {
+        // Si hay error al parsear, ignora y sigue
+      }
     }
     return {
       dni: "",
