@@ -101,11 +101,13 @@ export default function ModalForm({ number, onClose }: Props) {
       <div className="modal-content" ref={modalRef}>
         <div className="modal-vertical-text">
           <span className="black">TICKET</span>
+          {"   "}
           <span className="red">#{number}</span>
         </div>
         <div className="modal-left">
           <h2 className="modal-title">
-            <span className="black">TICKET</span>{" "}
+            <span className="black">TICKET</span>
+            {"   "}
             <span className="red">#{number}</span>
           </h2>
           <form onSubmit={handleSubmit}>
@@ -115,21 +117,33 @@ export default function ModalForm({ number, onClose }: Props) {
               required
               value={form.dni}
               onChange={handleChange}
+              className="medium-width"
             />
-            <div className="name-row">
-              <input
-                name="name"
-                placeholder="Nombres"
-                required
-                value={form.name}
-                onChange={handleChange}
-              />
+
+            <input
+              name="name"
+              placeholder="Nombres"
+              required
+              value={form.name}
+              onChange={handleChange}
+              className="full-width"
+            />
+            <div className="lastname-row">
               <input
                 name="lastname"
-                placeholder="Apellidos"
+                placeholder="Primer Apellido"
                 required
                 value={form.lastname}
                 onChange={handleChange}
+                className="half-width"
+              />
+              <input
+                name="secondLastname"
+                placeholder="Segundo Apellido"
+                required
+                value={form.secondLastname}
+                onChange={handleChange}
+                className="half-width"
               />
             </div>
             <input
@@ -138,6 +152,7 @@ export default function ModalForm({ number, onClose }: Props) {
               required
               value={form.address}
               onChange={handleChange}
+              className="full-width"
             />
             <input
               name="email"
@@ -146,6 +161,7 @@ export default function ModalForm({ number, onClose }: Props) {
               required
               value={form.email}
               onChange={handleChange}
+              className="full-width"
             />
             <input
               name="phone"
@@ -153,6 +169,7 @@ export default function ModalForm({ number, onClose }: Props) {
               required
               value={form.phone}
               onChange={handleChange}
+              className="medium-width"
             />
             <div className="yape-text">
               Yapear o Plinear al número: <strong>933294369</strong>
@@ -163,8 +180,11 @@ export default function ModalForm({ number, onClose }: Props) {
               accept="image/*"
               required
               onChange={handleChange}
+              className="file-input"
             />
-            <button type="submit">Enviar</button>
+            <button type="submit" className="submit-button">
+              Enviar
+            </button>
           </form>
           <div className="modal-close" onClick={() => onClose(false)}>
             Cerrar
