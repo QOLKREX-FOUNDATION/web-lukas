@@ -57,10 +57,13 @@ export default function ModalForm({ number, onClose }: Props) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
+
+    const fieldName = name as keyof typeof form;
+
     if (name === "voucher") {
       setForm((prev) => ({ ...prev, voucher: files?.[0] || null }));
     } else {
-      setForm((prev) => ({ ...prev, [name]: value }));
+      setForm((prev) => ({ ...prev, [fieldName]: value }));
     }
   };
 
