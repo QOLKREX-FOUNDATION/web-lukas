@@ -99,9 +99,14 @@ export default function ModalForm({ number, onClose }: Props) {
   return (
     <div className="modal-overlay">
       <div className="modal-content" ref={modalRef}>
+        <div className="modal-vertical-text">
+          <span className="black">TICKET</span>
+          <span className="red">#{number}</span>
+        </div>
         <div className="modal-left">
-          <h2 className="text-xl font-bold text-[#a56d26] mb-2">
-            Ticket #{number}
+          <h2 className="modal-title">
+            <span className="black">TICKET</span>{" "}
+            <span className="red">#{number}</span>
           </h2>
           <form onSubmit={handleSubmit}>
             <input
@@ -111,25 +116,35 @@ export default function ModalForm({ number, onClose }: Props) {
               value={form.dni}
               onChange={handleChange}
             />
-            <input
-              name="name"
-              placeholder="Nombres"
-              required
-              value={form.name}
-              onChange={handleChange}
-            />
-            <input
-              name="lastname"
-              placeholder="Apellidos"
-              required
-              value={form.lastname}
-              onChange={handleChange}
-            />
+            <div className="name-row">
+              <input
+                name="name"
+                placeholder="Nombres"
+                required
+                value={form.name}
+                onChange={handleChange}
+              />
+              <input
+                name="lastname"
+                placeholder="Apellidos"
+                required
+                value={form.lastname}
+                onChange={handleChange}
+              />
+            </div>
             <input
               name="address"
               placeholder="Dirección"
               required
               value={form.address}
+              onChange={handleChange}
+            />
+            <input
+              name="email"
+              placeholder="Correo electrónico"
+              type="email"
+              required
+              value={form.email}
               onChange={handleChange}
             />
             <input
@@ -139,15 +154,7 @@ export default function ModalForm({ number, onClose }: Props) {
               value={form.phone}
               onChange={handleChange}
             />
-            <input
-              name="email"
-              type="email"
-              placeholder="Correo electrónico"
-              required
-              value={form.email}
-              onChange={handleChange}
-            />
-            <div className="text-sm text-gray-700 mb-1">
+            <div className="yape-text">
               Yapear o Plinear al número: <strong>933294369</strong>
             </div>
             <input
