@@ -119,6 +119,9 @@ export default function ModalForm({ number, onClose }: Props) {
               required
               value={form.dni}
               onChange={handleChange}
+              inputMode="numeric"
+              pattern="\d*"
+              maxLength={8}
               className="medium-width"
             />
 
@@ -128,6 +131,9 @@ export default function ModalForm({ number, onClose }: Props) {
               required
               value={form.name}
               onChange={handleChange}
+              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+              inputMode="text"
+              title="Solo letras y espacios"
               className="full-width"
             />
             <div className="lastname-row">
@@ -137,6 +143,8 @@ export default function ModalForm({ number, onClose }: Props) {
                 required
                 value={form.lastname}
                 onChange={handleChange}
+                pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+                inputMode="text"
                 className="half-width"
               />
               <input
@@ -145,6 +153,8 @@ export default function ModalForm({ number, onClose }: Props) {
                 required
                 value={form.secondLastname}
                 onChange={handleChange}
+                pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+                inputMode="text"
                 className="half-width"
               />
             </div>
@@ -171,6 +181,9 @@ export default function ModalForm({ number, onClose }: Props) {
               required
               value={form.phone}
               onChange={handleChange}
+              inputMode="numeric"
+              pattern="\d*"
+              maxLength={9}
               className="medium-width"
             />
             <div className="yape-text">
