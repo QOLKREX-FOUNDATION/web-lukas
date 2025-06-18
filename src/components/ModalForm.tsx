@@ -194,6 +194,9 @@ export default function ModalForm({ number, onClose }: Props) {
         </div>
 
         <div className="modal-right">
+          <div className="modal-right-inner">
+            <span>Sudamericano</span>
+          </div>
           <img
             src="https://res.cloudinary.com/dktfsty7b/image/upload/v1748911635/icono1_cvcaa2.png"
             alt="Decoración"
