@@ -13,6 +13,7 @@ type FormState = {
   dni: string;
   name: string;
   lastname: string;
+  secondLastname: string;
   address: string;
   phone: string;
   email: string;
@@ -41,6 +42,7 @@ export default function ModalForm({ number, onClose }: Props) {
       dni: "",
       name: "",
       lastname: "",
+      secondLastname: "",
       address: "",
       phone: "",
       email: "",
