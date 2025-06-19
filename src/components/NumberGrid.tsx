@@ -17,14 +17,17 @@ export default function NumberGrid({ numbers, onSelect }: Props) {
   return (
     <div className="rifa-grid-internal">
       {numbers.map(({ number, status }) => {
-        let bgColor = "bg-gray-300";
-        if (status === "pending") bgColor = "bg-yellow-400";
-        if (status === "confirmed") bgColor = "bg-green-500";
+        const bgColor =
+          status === "confirmed"
+            ? "bg-green-500 text-white"
+            : status === "pending"
+            ? "bg-yellow-400 text-black"
+            : "bg-white text-black";
 
         return (
           <button
             key={number}
-            className={`w-10 h-10 rounded-md font-bold text-white ${bgColor}`}
+            className={`number-box ${bgColor}`}
             disabled={status === "confirmed"}
             onClick={() => onSelect(number)}
           >

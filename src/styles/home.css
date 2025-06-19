@@ -77,6 +77,20 @@
   font-size: 1.5rem;
   text-decoration: underline;
 }
+
+.number-box.pending {
+  background-color: yellow;
+  color: black;
+}
+.number-box.confirmed {
+  background-color: green;
+  color: white;
+}
+.number-box.available {
+  background-color: white;
+  color: black;
+}
+
 /* Responsive para móvil */
 @media (max-width: 640px) {
   .lukas-bio {

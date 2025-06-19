@@ -101,4 +101,20 @@ export default function HomePage() {
       </div>
     </main>
   );
+
+  useEffect(() => {
+    const fetchStatuses = async () => {
+      const res = await fetch("/api/numeros");
+      const data = await res.json();
+      const map: Record<number, "available" | "pending" | "confirmed"> = {};
+
+      data.forEach((item: any) => {
+        map[item.number] = item.status; // status = "pending", "confirmed", etc
+      });
+
+      setNumberStatuses(map);
+    };
+
+    fetchStatuses();
+  }, []);
 }
