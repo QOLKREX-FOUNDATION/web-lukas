@@ -92,6 +92,22 @@
   background-color: #e2e8f0; /* ← Cambiado de blanco a gris claro (Tailwind: bg-gray-300) */
   color: black;
 }
+
+.number-box {
+  border-radius: 8px; /* Puedes ajustar a 6px o 12px si prefieres más o menos redondeo */
+  border: 1.5px solid #ccc; /* Borde gris claro */
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.number-box:hover {
+  transform: scale(1.05);
+  border-color: #999; /* Un poco más oscuro al pasar el mouse */
+}
+
 /* Responsive para móvil */
 @media (max-width: 640px) {
   .lukas-bio {
