@@ -99,7 +99,7 @@ export default async function handler(
       });
 
       res.status(200).json({ success: true });
-    } catch (err: any) {
+    } catch (err) {
       console.error("❌ Error general:", err);
       res.status(500).json({ error: err.message || "Error interno" });
     }
