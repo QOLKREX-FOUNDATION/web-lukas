@@ -4,7 +4,7 @@ import { connectToDatabase } from "../../lib/mongo";
 import { sendEmail } from "../../lib/email";
 
 import formidable from "formidable";
-import type { File, Files, Fields } from "formidable";
+import type { Files, Fields } from "formidable";
 
 import { v2 as cloudinary } from "cloudinary";
 
