@@ -1,7 +1,7 @@
 // ✅ app/page.tsx — Página principal (HOME)
 "use client";
 import "@/styles/home.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalForm from "@/components/ModalForm";
 import NumberGrid from "@/components/NumberGrid";
 

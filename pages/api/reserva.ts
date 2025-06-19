@@ -38,16 +38,18 @@ export default async function handler(
     }
 
     try {
-      const {
-        dni,
-        name,
-        lastname,
-        secondLastname,
-        address,
-        phone,
-        email,
-        number,
-      } = fields;
+      // ✅ Asegura los valores (pueden venir como string[] o undefined)
+      const getSafeString = (field: any) =>
+        Array.isArray(field) ? field[0] : field || "";
+
+      const dni = getSafeString(fields.dni);
+      const name = getSafeString(fields.name);
+      const lastname = getSafeString(fields.lastname);
+      const secondLastname = getSafeString(fields.secondLastname);
+      const address = getSafeString(fields.address);
+      const phone = getSafeString(fields.phone);
+      const email = getSafeString(fields.email);
+      const number = Number(getSafeString(fields.number));
 
       const voucherFile = Array.isArray(files.voucher)
         ? files.voucher[0]
@@ -65,6 +67,15 @@ export default async function handler(
       );
 
       const { db } = await connectToDatabase();
+
+      const existing = await db.collection("rifa").findOne({ number });
+
+      if (existing?.status === "confirmed") {
+        return res.status(400).json({
+          message: "Este número ya está confirmado y no puede reservarse.",
+        });
+      }
+
       const reserva = {
         dni,
         name,
@@ -82,7 +93,7 @@ export default async function handler(
       await db.collection("reservas").insertOne(reserva);
 
       await sendEmail({
-        to: email as string,
+        to: email,
         subject: "Gracias por participar en la rifa de Lukas",
         html: `<p>Hola ${name} ${lastname},</p><p>Gracias por apoyar a Lukas en su carrera deportiva.</p><p>Reservaste el número <strong>#${number}</strong>.</p>`,
       });
@@ -93,12 +104,4 @@ export default async function handler(
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
-
-  const existing = await db.collection("rifa").findOne({ number });
-
-  if (existing?.status === "confirmed") {
-    return res.status(400).json({
-      message: "Este número ya está confirmado y no puede reservarse.",
-    });
-  }
 }
