@@ -1,6 +1,6 @@
 // ✅ Crea este archivo
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "@/lib/mongo";
+import { connectToDatabase } from "../../lib/mongo";
 
 export default async function handler(
   req: NextApiRequest,
