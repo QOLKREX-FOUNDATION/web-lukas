@@ -6,7 +6,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { db } = await connectToDatabase();
-  const data = await db.collection("rifa").find({}).toArray();
-  res.status(200).json(data);
+  if (req.method === "GET") {
+    const { db } = await connectToDatabase();
+    const data = await db.collection("rifa").find({}).toArray();
+    res.status(200).json(data);
+  } else {
+    res.setHeader("Allow", ["GET"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
 }
