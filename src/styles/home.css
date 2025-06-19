@@ -89,13 +89,13 @@
 }
 
 .number-box.available {
-  background-color: #e2e8f0; /* ← Cambiado de blanco a gris claro (Tailwind: bg-gray-300) */
-  color: black;
+  background-color: #c8c8c8; /* ← Cambiado de blanco a gris claro (Tailwind: bg-gray-300) */
+  color: white;
 }
 
 .number-box {
   border-radius: 8px; /* Puedes ajustar a 6px o 12px si prefieres más o menos redondeo */
-  border: 1.5px solid #ccc; /* Borde gris claro */
+  border: 1.5px solid #a3a3a3; /* Borde gris claro */
   text-align: center;
   font-weight: bold;
   padding: 0.5rem;

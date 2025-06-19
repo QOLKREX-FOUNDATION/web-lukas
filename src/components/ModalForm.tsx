@@ -97,9 +97,12 @@ export default function ModalForm({ number, onClose }: Props) {
       alert("¡Gracias por participar! En breve confirmaremos tu pago.");
       localStorage.removeItem("form-lukas");
       onClose(true);
-    } catch (err) {
-      console.error(err);
-      alert("Error al enviar el formulario.");
+    } catch (err: any) {
+      console.error("Error en front al llamar a la API:", err);
+      alert(
+        "Error al enviar el formulario: " +
+          (err.response?.data.error || err.message)
+      );
       onClose(false);
     }
   };

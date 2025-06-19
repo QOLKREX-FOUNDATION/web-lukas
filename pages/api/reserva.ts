@@ -99,9 +99,9 @@ export default async function handler(
       });
 
       res.status(200).json({ success: true });
-    } catch (error) {
-      console.error("❌ Error general:", error);
-      res.status(500).json({ message: "Error interno del servidor" });
+    } catch (err: any) {
+      console.error("❌ Error general:", err);
+      res.status(500).json({ error: err.message || "Error interno" });
     }
   });
 }
