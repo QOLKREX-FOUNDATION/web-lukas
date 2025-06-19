@@ -51,7 +51,6 @@ export default async function handler(
       const phone = getSafeString(fields.phone);
       const email = getSafeString(fields.email);
       const number = Number(getSafeString(fields.number));
-
       const voucherFile = Array.isArray(files.voucher)
         ? files.voucher[0]
         : files.voucher;
@@ -78,7 +77,7 @@ export default async function handler(
       }
 
       const reserva = {
-        dni,
+        dni: Number(number),
         name,
         lastname,
         secondLastname,
@@ -101,7 +100,7 @@ export default async function handler(
 
       res.status(200).json({ success: true });
     } catch (error) {
-      console.error("Error general:", error);
+      console.error("❌ Error general:", error);
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

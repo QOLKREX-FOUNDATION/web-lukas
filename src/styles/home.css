@@ -79,18 +79,19 @@
 }
 
 .number-box.pending {
-  background-color: yellow;
-  color: black;
-}
-.number-box.confirmed {
-  background-color: green;
-  color: white;
-}
-.number-box.available {
-  background-color: white;
+  background-color: #facc15; /* amarillo suave (como tailwind bg-yellow-400) */
   color: black;
 }
 
+.number-box.confirmed {
+  background-color: #22c55e; /* verde (como tailwind bg-green-500) */
+  color: white;
+}
+
+.number-box.available {
+  background-color: #e2e8f0; /* ← Cambiado de blanco a gris claro (Tailwind: bg-gray-300) */
+  color: black;
+}
 /* Responsive para móvil */
 @media (max-width: 640px) {
   .lukas-bio {
