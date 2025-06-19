@@ -5,6 +5,14 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 
+interface AxiosErrorResponse {
+  response: {
+    data: {
+      error: string;
+    };
+  };
+}
+
 interface Props {
   number: number;
   onClose: (wasSubmitted: boolean) => void;
@@ -99,22 +107,20 @@ export default function ModalForm({ number, onClose }: Props) {
       onClose(true);
     } catch (err: unknown) {
       console.error("Error en front al llamar a la API:", err);
+
       let mensaje = "Error al enviar el formulario";
 
-      if (err instanceof Error) {
-        mensaje += ": " + err.message;
-      }
-
-      // Si estás usando Axios (y err es un AxiosError)
       if (
         typeof err === "object" &&
         err !== null &&
         "response" in err &&
-        typeof (err as { response: any }).response?.data?.error === "string"
+        typeof (err as AxiosErrorResponse).response?.data?.error === "string"
       ) {
-        const typedErr = err as { response: { data: { error: string } } };
+        const typedErr = err as AxiosErrorResponse;
         mensaje =
           "Error al enviar el formulario: " + typedErr.response.data.error;
+      } else if (err instanceof Error) {
+        mensaje += ": " + err.message;
       }
 
       alert(mensaje);
