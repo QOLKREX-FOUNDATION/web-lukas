@@ -3,7 +3,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../lib/mongo";
 import { sendEmail } from "../../lib/email";
 
-import formidable from "formidable";
+import { IncomingForm } from "formidable";
+
 import type { Files, Fields } from "formidable";
 
 import { v2 as cloudinary } from "cloudinary";
@@ -29,7 +30,7 @@ export default async function handler(
     return res.status(405).json({ message: "Método no permitido" });
   }
 
-  const form = new formidable.IncomingForm({ multiples: false });
+  const form = new IncomingForm({ multiples: false });
 
   form.parse(req, async (err, fields: Fields, files: Files) => {
     if (err) {
@@ -38,6 +39,9 @@ export default async function handler(
     }
 
     try {
+      console.log("REQ METHOD:", req.method);
+      console.log("REQ BODY:", req.body);
+
       const getSafeString = (field: unknown): string => {
         if (Array.isArray(field)) return field[0];
         if (typeof field === "string") return field;
@@ -68,12 +72,15 @@ export default async function handler(
 
       const { db } = await connectToDatabase();
 
-      const existing = await db.collection("rifa").findOne({ number });
+      const existing = await db.collection("reservas").findOne({ number });
 
-      if (existing?.status === "confirmed") {
-        return res.status(400).json({
-          message: "Este número ya está confirmado y no puede reservarse.",
-        });
+      if (
+        existing?.status &&
+        ["confirmed", "pending"].includes(existing?.status)
+      ) {
+        return res
+          .status(400)
+          .json({ message: "Este número ya está reservado o confirmado." });
       }
 
       const reserva = {

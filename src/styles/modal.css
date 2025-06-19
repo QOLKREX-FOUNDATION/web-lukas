@@ -119,10 +119,12 @@
 .modal-right img {
   max-height: 300px;
   width: auto;
-  max-width: 110%;
+  max-width: 140%;
   /*max-height: 90%;*/
   margin-left: -4rem;
   margin-top: 2rem;
+  position: relative;
+  top: -2rem;
 }
 
 .modal-vertical-text {

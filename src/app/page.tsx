@@ -16,23 +16,29 @@ export default function HomePage() {
       const res = await fetch("/api/numeros");
       const data = await res.json();
 
-      type NumberItem = {
-        number: number;
-        status: "available" | "pending" | "confirmed";
-      };
-
       const map: Record<number, "available" | "pending" | "confirmed"> = {};
-      (data as NumberItem[]).forEach((item) => {
-        map[item.number] = item.status;
-      });
-
+      data.forEach(
+        (item: {
+          number: number;
+          status: "available" | "pending" | "confirmed";
+        }) => {
+          map[item.number] = item.status;
+        }
+      );
       setNumberStatuses(map);
     };
-
     fetchStatuses();
   }, []);
 
   const handleNumberClick = (number: number) => {
+    const status = numberStatuses[number];
+    if (status === "confirmed") {
+      alert("Número vendido.");
+      return;
+    } else if (status === "pending") {
+      alert("Este número está pendiente de evaluación de compra.");
+      return;
+    }
     setSelectedNumber(number);
   };
 

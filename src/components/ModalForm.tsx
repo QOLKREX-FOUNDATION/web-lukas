@@ -243,8 +243,8 @@ export default function ModalForm({ number, onClose }: Props) {
           <Image
             src="https://res.cloudinary.com/dktfsty7b/image/upload/v1748911635/icono1_cvcaa2.png"
             alt="Decoración"
-            width={150} // puedes ajustar según el tamaño deseado
-            height={150}
+            width={160} // puedes ajustar según el tamaño deseado
+            height={160}
           />
         </div>
       </div>
