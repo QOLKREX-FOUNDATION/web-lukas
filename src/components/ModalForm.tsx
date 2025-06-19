@@ -97,12 +97,26 @@ export default function ModalForm({ number, onClose }: Props) {
       alert("¡Gracias por participar! En breve confirmaremos tu pago.");
       localStorage.removeItem("form-lukas");
       onClose(true);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Error en front al llamar a la API:", err);
-      alert(
-        "Error al enviar el formulario: " +
-          (err.response?.data.error || err.message)
-      );
+      let mensaje = "Error al enviar el formulario";
+
+      if (err instanceof Error) {
+        mensaje += ": " + err.message;
+      }
+
+      // Si estás usando Axios (y err es un AxiosError)
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "response" in err &&
+        typeof (err as any).response?.data?.error === "string"
+      ) {
+        mensaje =
+          "Error al enviar el formulario: " + (err as any).response.data.error;
+      }
+
+      alert(mensaje);
       onClose(false);
     }
   };
