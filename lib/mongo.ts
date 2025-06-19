@@ -3,8 +3,12 @@ import { MongoClient } from "mongodb";
 const uri = process.env.MONGODB_URI!;
 const options = {};
 
-// ✅ Extiende el tipo de globalThis para que TypeScript no marque error
 declare global {
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
+}
+
+declare global {
+  // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
