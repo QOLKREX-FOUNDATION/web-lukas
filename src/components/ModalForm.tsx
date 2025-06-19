@@ -3,6 +3,7 @@
 import "@/styles/modal.css";
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 interface Props {
   number: number;
@@ -210,7 +211,7 @@ export default function ModalForm({ number, onClose }: Props) {
           <div className="modal-right-inner">
             <span>Sudamericano</span>
           </div>
-          <img
+          <Image
             src="https://res.cloudinary.com/dktfsty7b/image/upload/v1748911635/icono1_cvcaa2.png"
             alt="Decoración"
           />
