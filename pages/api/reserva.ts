@@ -3,7 +3,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../lib/mongo";
 import { sendEmail } from "../../lib/email";
 
-import formidable, { File } from "formidable";
+import formidable from "formidable";
+import type { File, Files, Fields } from "formidable";
+
 import { v2 as cloudinary } from "cloudinary";
 
 // Deshabilita el body parser interno de Next.js para manejar multipart/form-data
@@ -29,7 +31,7 @@ export default async function handler(
 
   const form = new formidable.IncomingForm({ multiples: false });
 
-  form.parse(req, async (err, fields, files) => {
+  form.parse(req, async (err, fields: Fields, files: Files) => {
     if (err) {
       console.error("Error al parsear el formulario:", err);
       return res.status(500).json({ message: "Error en el servidor" });
@@ -47,7 +49,15 @@ export default async function handler(
         number,
       } = fields;
 
-      const voucherFile = files.voucher as File;
+      const voucherFile = Array.isArray(files.voucher)
+        ? files.voucher[0]
+        : files.voucher;
+
+      if (!voucherFile || !voucherFile.filepath) {
+        return res
+          .status(400)
+          .json({ message: "No se subió el archivo del voucher." });
+      }
 
       const cloudinaryResponse = await cloudinary.uploader.upload(
         voucherFile.filepath,
