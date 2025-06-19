@@ -1,7 +1,8 @@
 // ✅ pages/api/reserva.ts
 import type { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "@/lib/mongo";
-import { sendEmail } from "@/lib/email";
+import { connectToDatabase } from "../../lib/mongo";
+import { sendEmail } from "../../lib/email";
+
 import formidable, { File } from "formidable";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
@@ -88,10 +89,8 @@ export default async function handler(
   const existing = await db.collection("rifa").findOne({ number });
 
   if (existing?.status === "confirmed") {
-    return res
-      .status(400)
-      .json({
-        message: "Este número ya está confirmado y no puede reservarse.",
-      });
+    return res.status(400).json({
+      message: "Este número ya está confirmado y no puede reservarse.",
+    });
   }
 }
