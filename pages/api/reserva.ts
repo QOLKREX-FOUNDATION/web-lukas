@@ -77,14 +77,14 @@ export default async function handler(
       }
 
       const reserva = {
-        dni: Number(number),
+        dni,
         name,
         lastname,
         secondLastname,
         address,
         phone,
         email,
-        number: Number(number),
+        number,
         voucherUrl: cloudinaryResponse.secure_url,
         status: "pendiente",
         createdAt: new Date(),
