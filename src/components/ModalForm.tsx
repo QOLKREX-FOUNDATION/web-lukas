@@ -110,10 +110,11 @@ export default function ModalForm({ number, onClose }: Props) {
         typeof err === "object" &&
         err !== null &&
         "response" in err &&
-        typeof (err as any).response?.data?.error === "string"
+        typeof (err as { response: any }).response?.data?.error === "string"
       ) {
+        const typedErr = err as { response: { data: { error: string } } };
         mensaje =
-          "Error al enviar el formulario: " + (err as any).response.data.error;
+          "Error al enviar el formulario: " + typedErr.response.data.error;
       }
 
       alert(mensaje);
