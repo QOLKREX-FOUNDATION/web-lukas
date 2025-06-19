@@ -5,8 +5,6 @@ import { sendEmail } from "../../lib/email";
 
 import formidable, { File } from "formidable";
 import { v2 as cloudinary } from "cloudinary";
-import fs from "fs";
-import path from "path";
 
 // Deshabilita el body parser interno de Next.js para manejar multipart/form-data
 export const config = {

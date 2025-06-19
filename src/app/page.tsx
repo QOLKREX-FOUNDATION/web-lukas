@@ -15,10 +15,15 @@ export default function HomePage() {
     const fetchStatuses = async () => {
       const res = await fetch("/api/numeros");
       const data = await res.json();
-      const map: Record<number, "available" | "pending" | "confirmed"> = {};
 
-      data.forEach((item: any) => {
-        map[item.number] = item.status; // status = "pending", "confirmed", etc
+      type NumberItem = {
+        number: number;
+        status: "available" | "pending" | "confirmed";
+      };
+
+      const map: Record<number, "available" | "pending" | "confirmed"> = {};
+      (data as NumberItem[]).forEach((item) => {
+        map[item.number] = item.status;
       });
 
       setNumberStatuses(map);
