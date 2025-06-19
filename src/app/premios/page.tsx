@@ -29,7 +29,7 @@ export default function PremiosPage() {
         <p className="text-xl text-[#a56d26] font-bold">
           ¡Gracias por tu colaboración!
         </p>
-        <img
+        <Image
           src="https://res.cloudinary.com/dktfsty7b/image/upload/v1749148506/icono_esgrimista.png"
           alt="Esgrimista icono"
           className="w-12 h-12 mx-auto mt-4"
