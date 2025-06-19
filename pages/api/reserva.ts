@@ -38,10 +38,11 @@ export default async function handler(
     }
 
     try {
-      // ✅ Asegura los valores (pueden venir como string[] o undefined)
-      const getSafeString = (field: any) =>
-        Array.isArray(field) ? field[0] : field || "";
-
+      const getSafeString = (field: unknown): string => {
+        if (Array.isArray(field)) return field[0];
+        if (typeof field === "string") return field;
+        return "";
+      };
       const dni = getSafeString(fields.dni);
       const name = getSafeString(fields.name);
       const lastname = getSafeString(fields.lastname);
