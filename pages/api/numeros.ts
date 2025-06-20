@@ -8,7 +8,7 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     const { db } = await connectToDatabase();
-    const data = await db.collection("rifa").find({}).toArray();
+    const data = await db.collection("reservas").find({}).toArray();
     res.status(200).json(data);
   } else {
     res.setHeader("Allow", ["GET"]);

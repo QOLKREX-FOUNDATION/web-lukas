@@ -80,7 +80,7 @@
 
 .number-box.pending {
   background-color: #facc15; /* amarillo suave (como tailwind bg-yellow-400) */
-  color: black;
+  color: white;
 }
 
 .number-box.confirmed {

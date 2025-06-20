@@ -93,7 +93,7 @@ export default async function handler(
         email,
         number,
         voucherUrl: cloudinaryResponse.secure_url,
-        status: "pendiente",
+        status: "pending",
         createdAt: new Date(),
       };
 
