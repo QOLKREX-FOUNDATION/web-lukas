@@ -8,7 +8,7 @@ export default function PremiosPage() {
       <section className="max-w-3xl mx-auto">
         {/* Imagen completa de los premios */}
         <Image
-          src="https://res.cloudinary.com/dktfsty7b/image/upload/v1749148506/2_zhujhj.png"
+          src="https://res.cloudinary.com/dktfsty7b/image/upload/v1750386420/2-1_hw83xl.png"
           alt="Premios"
           width={1200}
           height={700}
@@ -16,7 +16,7 @@ export default function PremiosPage() {
         />
 
         {/* Lista textual (editable desde backend en futuro) */}
-        <h2 className="text-3xl font-bold text-[#77cce6] mb-4">PREMIOS</h2>
+        {/* <h2 className="text-3xl font-bold text-[#77cce6] mb-4">PREMIOS</h2>
         <ul className="text-lg font-medium text-gray-800 mb-10 space-y-2 text-left">
           <li>🏨 1 noche de hospedaje en Lunahuaná para 4 personas</li>
           <li>🍷 1 botella de vino + canasta de snacks</li>
@@ -28,7 +28,7 @@ export default function PremiosPage() {
 
         <p className="text-xl text-[#a56d26] font-bold">
           ¡Gracias por tu colaboración!
-        </p>
+        </p> */}
       </section>
     </main>
   );
