@@ -39,9 +39,6 @@ export default async function handler(
     }
 
     try {
-      console.log("REQ METHOD:", req.method);
-      console.log("REQ BODY:", req.body);
-
       const getSafeString = (field: unknown): string => {
         if (Array.isArray(field)) return field[0];
         if (typeof field === "string") return field;
