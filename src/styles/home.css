@@ -108,6 +108,14 @@
   transform: scale(1.05);
   border-color: #999; /* Un poco más oscuro al pasar el mouse */
 }
+.footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb; /* gris suave */
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6b7280; /* texto gris */
+}
 
 /* Responsive para móvil */
 @media (max-width: 640px) {

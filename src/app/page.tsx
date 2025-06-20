@@ -125,6 +125,13 @@ export default function HomePage() {
             onClose={(wasSubmitted) => closeModal(wasSubmitted)}
           />
         )}
+
+        <footer className="footer">
+          <p className="text-center text-sm text-gray-500 mt-8">
+            © {new Date().getFullYear()} Qolkrex Foundation. Todos los derechos
+            reservados.
+          </p>
+        </footer>
       </div>
     </main>
   );
