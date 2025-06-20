@@ -29,8 +29,6 @@ export default function PremiosPage() {
         <p className="text-xl text-[#a56d26] font-bold">
           ¡Gracias por tu colaboración!
         </p>
-       
-        />
       </section>
     </main>
   );
