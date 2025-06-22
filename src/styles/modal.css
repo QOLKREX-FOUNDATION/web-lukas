@@ -234,6 +234,11 @@
   background-color: #1e40af;
 }
 
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ✅ Responsive para móvil */
 @media (max-width: 768px) {
   .modal-content {

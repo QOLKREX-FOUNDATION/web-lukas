@@ -1,9 +1,24 @@
-// ✅ components/ModalForm.tsx
 "use client";
-import "@/styles/modal.css";
 import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
 import Image from "next/image";
+import axios from "axios";
+import "@/styles/modal.css";
+
+interface Props {
+  number: number;
+  onClose: (wasSubmitted: boolean) => void;
+}
+
+interface FormState {
+  dni: string;
+  name: string;
+  lastname: string;
+  secondLastname: string;
+  address: string;
+  phone: string;
+  email: string;
+  voucher: File | null;
+}
 
 interface AxiosErrorResponse {
   response: {
@@ -13,39 +28,25 @@ interface AxiosErrorResponse {
   };
 }
 
-interface Props {
-  number: number;
-  onClose: (wasSubmitted: boolean) => void;
-}
-
-type FormState = {
-  dni: string;
-  name: string;
-  lastname: string;
-  secondLastname: string;
-  address: string;
-  phone: string;
-  email: string;
-  voucher: File | null;
-};
-
 export default function ModalForm({ number, onClose }: Props) {
   const modalRef = useRef<HTMLDivElement>(null);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAutoComplete, setIsAutoComplete] = useState(false);
   const [form, setForm] = useState<FormState>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("form-lukas");
-      try {
-        const parsed = saved ? JSON.parse(saved) : null;
-        if (parsed) {
-          return {
-            ...parsed,
-            voucher: null, // Nunca se guarda el File en localStorage
+      return saved
+        ? JSON.parse(saved)
+        : {
+            dni: "",
+            name: "",
+            lastname: "",
+            secondLastname: "",
+            address: "",
+            phone: "",
+            email: "",
+            voucher: null,
           };
-        }
-      } catch {
-        // Si hay error al parsear, ignora y sigue
-      }
     }
     return {
       dni: "",
@@ -59,12 +60,10 @@ export default function ModalForm({ number, onClose }: Props) {
     };
   });
 
-  // ✅ Guardar datos automáticamente en localStorage
   useEffect(() => {
     localStorage.setItem("form-lukas", JSON.stringify(form));
   }, [form]);
 
-  // ✅ Detectar clic fuera del modal
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
@@ -75,39 +74,84 @@ export default function ModalForm({ number, onClose }: Props) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (form.dni.length === 8) {
+        try {
+          const res = await fetch(`/api/usuario?dni=${form.dni}`);
+          const data = await res.json();
+          if (data?.name && data?.lastname) {
+            setForm((prev) => ({
+              ...prev,
+              name: data.name,
+              lastname: data.lastname,
+              secondLastname: "",
+              address: "",
+              email: "",
+              phone: "",
+            }));
+            setIsAutoComplete(true);
+          } else {
+            setIsAutoComplete(false);
+          }
+        } catch (err) {
+          console.error("No se encontró el DNI:", err);
+        }
+      }
+    };
+
+    fetchUser();
+  }, [form.dni]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
-
-    const fieldName = name as keyof typeof form;
+    const fieldName = name as keyof FormState;
 
     if (name === "voucher") {
       setForm((prev) => ({ ...prev, voucher: files?.[0] || null }));
     } else {
-      setForm((prev) => ({ ...prev, [fieldName]: value }));
+      setForm((prev) => ({
+        ...prev,
+        [fieldName]: value.toUpperCase(),
+      }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    if (form.voucher && form.voucher.size > 2 * 1024 * 1024) {
+      alert("El archivo excede los 2MB");
+      setIsSubmitting(false);
+      return;
+    }
+
     const formData = new FormData();
     Object.entries(form).forEach(([key, value]) => {
       if (value) formData.append(key, value as string | Blob);
     });
     formData.append("number", number.toString());
 
-    // DEBUG
-    for (const [key, val] of formData.entries()) {
-      console.log(`${key}:`, val);
-    }
-
     try {
       await axios.post("/api/reserva", formData);
       alert("¡Gracias por participar! En breve confirmaremos tu pago.");
       localStorage.removeItem("form-lukas");
+
+      setForm({
+        dni: "",
+        name: "",
+        lastname: "",
+        secondLastname: "",
+        address: "",
+        phone: "",
+        email: "",
+        voucher: null,
+      });
+
       onClose(true);
     } catch (err: unknown) {
       console.error("Error en front al llamar a la API:", err);
-
       let mensaje = "Error al enviar el formulario";
 
       if (
@@ -125,6 +169,8 @@ export default function ModalForm({ number, onClose }: Props) {
 
       alert(mensaje);
       onClose(false);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -132,16 +178,16 @@ export default function ModalForm({ number, onClose }: Props) {
     <div className="modal-overlay">
       <div className="modal-content" ref={modalRef}>
         <div className="modal-vertical-text">
-          <span className="black">TICKET</span>
-          {"   "}
+          <span className="black">TICKET</span>{" "}
           <span className="red">#{number}</span>
         </div>
+
         <div className="modal-left">
           <h2 className="modal-title">
-            <span className="black">TICKET</span>
-            {"   "}
+            <span className="black">TICKET</span>{" "}
             <span className="red">#{number}</span>
           </h2>
+
           <form onSubmit={handleSubmit}>
             <input
               name="dni"
@@ -155,15 +201,21 @@ export default function ModalForm({ number, onClose }: Props) {
               className="medium-width"
             />
 
+            {isAutoComplete && (
+              <div style={{ color: "#2563eb", fontSize: "0.85rem" }}>
+                Ya eres usuario de nuestras Rifas
+              </div>
+            )}
+
             <input
               name="name"
               placeholder="Nombres"
               required
               value={form.name}
               onChange={handleChange}
+              disabled={isAutoComplete}
               pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
               inputMode="text"
-              title="Solo letras y espacios"
               className="full-width"
             />
             <div className="lastname-row">
@@ -175,6 +227,7 @@ export default function ModalForm({ number, onClose }: Props) {
                 onChange={handleChange}
                 pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
                 inputMode="text"
+                disabled={isAutoComplete}
                 className="half-width"
               />
               <input
@@ -186,8 +239,10 @@ export default function ModalForm({ number, onClose }: Props) {
                 pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
                 inputMode="text"
                 className="half-width"
+                disabled={isAutoComplete}
               />
             </div>
+
             <input
               name="address"
               placeholder="Dirección"
@@ -195,16 +250,20 @@ export default function ModalForm({ number, onClose }: Props) {
               value={form.address}
               onChange={handleChange}
               className="full-width"
+              disabled={isAutoComplete}
             />
+
             <input
               name="email"
-              placeholder="Correo electrónico"
               type="email"
+              placeholder="Correo electrónico"
               required
               value={form.email}
               onChange={handleChange}
               className="full-width"
+              disabled={isAutoComplete}
             />
+
             <input
               name="phone"
               placeholder="Teléfono"
@@ -212,13 +271,20 @@ export default function ModalForm({ number, onClose }: Props) {
               value={form.phone}
               onChange={handleChange}
               inputMode="numeric"
-              pattern="\d*"
+              pattern="\d{9}"
               maxLength={9}
               className="medium-width"
+              disabled={isAutoComplete}
             />
+            {isAutoComplete && (
+              <div style={{ color: "#2563eb", fontSize: "0.8rem" }}>
+                Solo adjunte la imagen del depósito
+              </div>
+            )}
             <div className="yape-text">
               Yapear o Plinear al número: <strong>933294369</strong>
             </div>
+
             <input
               type="file"
               name="voucher"
@@ -227,10 +293,15 @@ export default function ModalForm({ number, onClose }: Props) {
               onChange={handleChange}
               className="file-input"
             />
-            <button type="submit" className="submit-button">
-              Enviar
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Enviando..." : "Enviar"}
             </button>
           </form>
+
           <div className="modal-close" onClick={() => onClose(false)}>
             Cerrar
           </div>
@@ -243,7 +314,7 @@ export default function ModalForm({ number, onClose }: Props) {
           <Image
             src="https://res.cloudinary.com/dktfsty7b/image/upload/v1748911635/icono1_cvcaa2.png"
             alt="Decoración"
-            width={160} // puedes ajustar según el tamaño deseado
+            width={160}
             height={160}
           />
         </div>

@@ -93,6 +93,29 @@ export default function HomePage() {
               representa una nueva generación de esgrimistas peruanos que están
               dejando huella en el ámbito deportivo regional.
             </p>
+            <p>
+              <strong>
+                Gracias al esfuerzo constante, Lukas ha sido nuevamente
+                convocado para representar al Perú, esta vez en el Campeonato
+                Sudamericano de Esgrima 2025 que se realizará en Quito, Ecuador.
+              </strong>
+            </p>
+            <p>
+              Este nuevo reto deportivo implica costos significativos en
+              pasajes, alojamiento, inscripción y equipamiento, por lo que se ha
+              organizado esta rifa solidaria como una forma de recaudar fondos y
+              seguir impulsando su camino como atleta.
+            </p>
+            <p>
+              <strong>
+                Agradecemos profundamente tu apoyo y confianza en este sueño.
+              </strong>
+            </p>
+            <p>
+              Cada aporte cuenta y cada número que adquieres es una muestra de
+              que el deporte en el Perú tiene futuro, gracias a personas como
+              tú. ¡Vamos juntos a Quito! 🤺
+            </p>
           </div>
 
           {/* Grilla de números */}
@@ -108,7 +131,7 @@ export default function HomePage() {
 
           {/* Sorteo info */}
           <p className="rifa-info">
-            El sorteo será en vivo por una video llamada 12/07/2025
+            El sorteo será en vivo por una video llamada 09/08/2025
           </p>
 
           {/* Enlace a premios */}

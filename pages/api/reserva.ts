@@ -69,18 +69,33 @@ export default async function handler(
 
       const { db } = await connectToDatabase();
 
-      const existing = await db.collection("reservas").findOne({ number });
+      // ✅ 1. Obtener rifa más reciente
+      const lastRifa = await db
+        .collection("rifa")
+        .find({})
+        .sort({ date: -1 })
+        .limit(1)
+        .toArray();
 
+      if (!lastRifa[0]) {
+        return res.status(500).json({ error: "No hay una rifa activa." });
+      }
+      const id_rifa = lastRifa[0].id_rifa;
+
+      // ✅ Verifica si el número ya está reservado
+      const existing = await db
+        .collection("numeros")
+        .findOne({ number, id_rifa });
       if (
         existing?.status &&
-        ["confirmed", "pending"].includes(existing?.status)
+        ["confirmed", "pending"].includes(existing.status)
       ) {
         return res
           .status(400)
           .json({ message: "Este número ya está reservado o confirmado." });
       }
 
-      const reserva = {
+      await db.collection("usuario").insertOne({
         dni,
         name,
         lastname,
@@ -88,13 +103,17 @@ export default async function handler(
         address,
         phone,
         email,
-        number,
         voucherUrl: cloudinaryResponse.secure_url,
-        status: "pending",
         createdAt: new Date(),
-      };
+      });
 
-      await db.collection("reservas").insertOne(reserva);
+      await db.collection("numeros").insertOne({
+        dni,
+        number,
+        id_rifa,
+        status: "pending",
+        fec_buy: new Date(),
+      });
 
       await sendEmail({
         to: email,
