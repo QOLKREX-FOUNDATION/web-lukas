@@ -3,7 +3,7 @@
   background-image: url("https://res.cloudinary.com/dktfsty7b/image/upload/v1749165282/1_tujkvp.png");
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 80% 95%;
   background-color: #fbfbf9;
   padding: 2rem 1rem;
   min-height: 100vh;
@@ -25,7 +25,7 @@
   padding-top: 2rem;
 }
 .lukas-bio {
-  margin-top: 55rem; /* Espacio hacia arriba (80px aprox) */
+  margin-top: 50rem; /* Espacio hacia arriba (80px aprox) */
   margin-bottom: -11rem; /* Espacio hacia abajo (32px aprox) */
   padding: 1rem; /* Espacio interior (16px) */
   background-color: rgba(255, 255, 255, 0); /* Fondo blanco semitransparente */
@@ -70,6 +70,7 @@
 }
 .rifa-link-container {
   margin-top: 1rem;
+  margin-bottom: -2rem;
 }
 
 .rifa-link {
@@ -119,6 +120,10 @@
 
 /* Responsive para móvil */
 @media (max-width: 640px) {
+  .home-wrapper {
+    background-size: 100% auto;
+  }
+
   .lukas-bio {
     font-size: 0.85rem;
     margin-top: 17rem;

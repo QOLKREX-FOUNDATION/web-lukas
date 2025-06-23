@@ -63,14 +63,15 @@ export default function HomePage() {
         <section className="home-section">
           {/* Descripción de Lukas */}
           <div className="lukas-bio">
-            <p className="mb-1">
+            <p className="mb-2">
               <strong>Lukas Rojas</strong> es un niño esgrimista peruano que ha
-              destacado en la categoría Sub-9. En 2024, representó al Perú en el
-              Campeonato Sudamericano Infantil de Esgrima realizado en Curitiba
-              - Brasil, donde obtuvo la medalla de <strong>bronce</strong> en la
-              modalidad de sable masculino.
+              destacado en la categoría Sub-9. Dos veces campeon nacional
+              consecutivo 2024 y 2025 en las modalidades de FLorete y Sable, en
+              el 2024 representó al Perú en el Campeonato Sudamericano Infantil
+              de Esgrima realizado en Curitiba - Brasil, donde obtuvo la medalla
+              de <strong>bronce</strong> en la modalidad de sable masculino.
             </p>
-            <p className="mb-1">
+            <p className="mb-2">
               Además de su participación en competencias internacionales, Lukas
               comparte su pasión por la esgrima a través de su cuenta de
               <a
@@ -83,24 +84,24 @@ export default function HomePage() {
               </a>
               , donde publica videos de sus entrenamientos y competencias.
             </p>
-            <p className="mb-1">
+            <p className="mb-2">
               Su desempeño ha sido reconocido por la Federación Peruana de
               Esgrima, que lo considera parte del futuro prometedor de este
               deporte en el país.
             </p>
-            <p>
+            <p className="mb-2">
               Con su dedicación y talento, <strong>Lukas Rojas</strong>{" "}
               representa una nueva generación de esgrimistas peruanos que están
               dejando huella en el ámbito deportivo regional.
             </p>
-            <p>
+            <p className="mb-2">
               <strong>
                 Gracias al esfuerzo constante, Lukas ha sido nuevamente
                 convocado para representar al Perú, esta vez en el Campeonato
                 Sudamericano de Esgrima 2025 que se realizará en Quito, Ecuador.
               </strong>
             </p>
-            <p>
+            <p className="mb-2">
               Este nuevo reto deportivo implica costos significativos en
               pasajes, alojamiento, inscripción y equipamiento, por lo que se ha
               organizado esta rifa solidaria como una forma de recaudar fondos y

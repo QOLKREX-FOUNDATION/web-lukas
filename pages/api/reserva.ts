@@ -2,11 +2,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../lib/mongo";
 import { sendEmail } from "../../lib/email";
-
 import { IncomingForm } from "formidable";
-
 import type { Files, Fields } from "formidable";
-
 import { v2 as cloudinary } from "cloudinary";
 
 // Deshabilita el body parser interno de Next.js para manejar multipart/form-data
@@ -62,14 +59,16 @@ export default async function handler(
           .json({ message: "No se subió el archivo del voucher." });
       }
 
+      // ✅ 1. Subir a Cloudinary
       const cloudinaryResponse = await cloudinary.uploader.upload(
         voucherFile.filepath,
         { folder: "lukas-rifa" }
       );
 
+      // ✅ 2. Conectarse a DB
       const { db } = await connectToDatabase();
 
-      // ✅ 1. Obtener rifa más reciente
+      // ✅ 3. Buscar la rifa más reciente
       const lastRifa = await db
         .collection("rifa")
         .find({})
@@ -82,7 +81,7 @@ export default async function handler(
       }
       const id_rifa = lastRifa[0].id_rifa;
 
-      // ✅ Verifica si el número ya está reservado
+      // ✅ 4. Verificar si el número ya fue reservado
       const existing = await db
         .collection("numeros")
         .findOne({ number, id_rifa });
@@ -95,18 +94,24 @@ export default async function handler(
           .json({ message: "Este número ya está reservado o confirmado." });
       }
 
-      await db.collection("usuario").insertOne({
-        dni,
-        name,
-        lastname,
-        secondLastname,
-        address,
-        phone,
-        email,
-        voucherUrl: cloudinaryResponse.secure_url,
-        createdAt: new Date(),
-      });
+      // ✅ 5. Guardar usuario solo si no existe
+      const userExists = await db.collection("usuarios").findOne({ dni });
 
+      if (!userExists) {
+        await db.collection("usuarios").insertOne({
+          dni,
+          name,
+          lastname,
+          secondLastname,
+          address,
+          phone,
+          email,
+          voucherUrl: cloudinaryResponse.secure_url,
+          createdAt: new Date(),
+        });
+      }
+
+      // ✅ 6. Guardar el número comprado
       await db.collection("numeros").insertOne({
         dni,
         number,
@@ -115,6 +120,7 @@ export default async function handler(
         fec_buy: new Date(),
       });
 
+      // ✅ 7. Enviar correo
       await sendEmail({
         to: email,
         subject: "Gracias por participar en la rifa de Lukas",
