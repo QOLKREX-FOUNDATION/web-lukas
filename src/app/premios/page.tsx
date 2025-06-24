@@ -8,7 +8,7 @@ export default function PremiosPage() {
       <section className="max-w-3xl mx-auto">
         {/* Imagen completa de los premios */}
         <Image
-          src="https://res.cloudinary.com/dktfsty7b/image/upload/v1750386420/2-1_hw83xl.png"
+          src="/img/premios.png"
           alt="Premios"
           width={1200}
           height={700}

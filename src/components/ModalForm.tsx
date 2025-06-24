@@ -78,18 +78,19 @@ export default function ModalForm({ number, onClose }: Props) {
     const fetchUser = async () => {
       if (form.dni.length === 8) {
         try {
-          const res = await fetch(`/api/usuario?dni=${form.dni}`);
+          const res = await fetch(`/api/usuarios?dni=${form.dni}`);
           const data = await res.json();
-          if (data?.name && data?.lastname) {
+          if (data?.name && data?.lastname && data?.email) {
             setForm((prev) => ({
               ...prev,
               name: data.name,
               lastname: data.lastname,
-              secondLastname: "",
-              address: "",
-              email: "",
-              phone: "",
+              secondLastname: data.secondLastname ?? "",
+              address: data.address ?? "",
+              email: data.email ?? "",
+              phone: data.phone ?? "",
             }));
+            // Si email existe, bloqueamos campos
             setIsAutoComplete(true);
           } else {
             setIsAutoComplete(false);
@@ -128,9 +129,32 @@ export default function ModalForm({ number, onClose }: Props) {
     }
 
     const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => {
-      if (value) formData.append(key, value as string | Blob);
-    });
+    // ✅ Si es auto-completado, enviar los datos como están aunque no estén visibles
+
+    formData.append("number", number.toString());
+    formData.append("dni", form.dni);
+
+    // ✅ aseguramos envío de email
+    formData.append("email", form.email);
+
+    if (isAutoComplete) {
+      formData.append("name", form.name);
+      formData.append("lastname", form.lastname);
+      formData.append("secondLastname", form.secondLastname);
+      formData.append("address", form.address);
+      formData.append("phone", form.phone);
+    } else {
+      Object.entries(form).forEach(([key, value]) => {
+        if (value !== null && value !== undefined) {
+          formData.append(key, value as string | Blob);
+        }
+      });
+    }
+
+    if (form.voucher) {
+      formData.append("voucher", form.voucher);
+    }
+
     formData.append("number", number.toString());
 
     try {

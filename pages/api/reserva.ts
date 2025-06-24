@@ -120,6 +120,13 @@ export default async function handler(
         fec_buy: new Date(),
       });
 
+      if (!email) {
+        return res
+          .status(400)
+          .json({
+            message: "Falta el correo electrónico para enviar confirmación.",
+          });
+      }
       // ✅ 7. Enviar correo
       await sendEmail({
         to: email,

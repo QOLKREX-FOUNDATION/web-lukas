@@ -13,7 +13,7 @@ export default async function handler(
   }
 
   const { db } = await connectToDatabase();
-  const user = await db.collection("usuario").findOne({ dni });
+  const user = await db.collection("usuarios").findOne({ dni });
 
   if (!user) {
     return res.status(404).json({ error: "No encontrado" });
@@ -23,5 +23,9 @@ export default async function handler(
   res.status(200).json({
     name: user.name,
     lastname: user.lastname,
+    secondLastname: user.secondLastname ?? "",
+    address: user.address ?? "",
+    email: user.email ?? "",
+    phone: user.phone ?? "",
   });
 }

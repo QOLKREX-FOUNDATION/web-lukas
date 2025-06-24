@@ -1,6 +1,6 @@
 /* === styles/home.css === */
 .home-wrapper {
-  background-image: url("https://res.cloudinary.com/dktfsty7b/image/upload/v1749165282/1_tujkvp.png");
+  background-image: url("/img/fondo-web.png");
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 80% 95%;
@@ -25,7 +25,7 @@
   padding-top: 2rem;
 }
 .lukas-bio {
-  margin-top: 50rem; /* Espacio hacia arriba (80px aprox) */
+  margin-top: 48rem; /* Espacio hacia arriba (80px aprox) */
   margin-bottom: -11rem; /* Espacio hacia abajo (32px aprox) */
   padding: 1rem; /* Espacio interior (16px) */
   background-color: rgba(255, 255, 255, 0); /* Fondo blanco semitransparente */
