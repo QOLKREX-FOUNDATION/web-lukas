@@ -252,7 +252,7 @@
     height: auto;
     /*margin-top: -2rem;*/
     width: 100%;
-    max-width: 90%;
+    max-width: 100%;
     gap: 1rem;
     position: relative;
   }
@@ -293,8 +293,8 @@
   .modal-right-inner {
     writing-mode: vertical-rl; /* Pone el texto en vertical */
     transform: rotate(180deg);
-    margin-left: -14rem;
-    margin-top: -3.5rem;
+    margin-left: -15rem;
+    margin-top: -3rem;
     font-size: 0.7rem;
     font-family: "Times New Roman", serif;
     font-weight: bold;
@@ -305,7 +305,7 @@
   .modal-quito {
     writing-mode: vertical-rl; /* Pone el texto en vertical */
     transform: rotate(180deg);
-    margin-left: -12rem;
+    margin-left: -13rem;
     margin-top: -6.8rem;
     font-size: 0.6rem;
     font-family: "Times New Roman", serif;
