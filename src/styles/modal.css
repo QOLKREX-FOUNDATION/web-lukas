@@ -267,10 +267,10 @@
   }
 
   .modal-right img {
-    max-width: 90px;
-    max-height: 90px;
+    max-width: 95px;
+    max-height: 95px;
     margin: 0 auto;
-    margin-top: -2.5rem;
+    margin-top: -2.8rem;
     margin-bottom: 1rem;
   }
 
@@ -293,7 +293,7 @@
   .modal-right-inner {
     writing-mode: vertical-rl; /* Pone el texto en vertical */
     transform: rotate(180deg);
-    margin-left: -15rem;
+    margin-left: -16rem;
     margin-top: -3rem;
     font-size: 0.7rem;
     font-family: "Times New Roman", serif;
@@ -305,7 +305,7 @@
   .modal-quito {
     writing-mode: vertical-rl; /* Pone el texto en vertical */
     transform: rotate(180deg);
-    margin-left: -13rem;
+    margin-left: -14rem;
     margin-top: -6.8rem;
     font-size: 0.6rem;
     font-family: "Times New Roman", serif;
