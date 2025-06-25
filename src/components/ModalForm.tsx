@@ -74,6 +74,8 @@ export default function ModalForm({ number, onClose }: Props) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
+  const [emailInterno, setEmailInterno] = useState("");
+
   useEffect(() => {
     const fetchUser = async () => {
       if (form.dni.length === 8) {
@@ -81,19 +83,22 @@ export default function ModalForm({ number, onClose }: Props) {
           const res = await fetch(`/api/usuarios?dni=${form.dni}`);
           const data = await res.json();
           if (data?.name && data?.lastname && data?.email) {
+            setEmailInterno(data.email);
             setForm((prev) => ({
               ...prev,
               name: data.name,
               lastname: data.lastname,
-              secondLastname: data.secondLastname ?? "",
-              address: data.address ?? "",
-              email: data.email ?? "",
-              phone: data.phone ?? "",
+              secondLastname: "Protected data",
+              address: "Protected data",
+              phone: "Protected data",
+              email: "Protected data",
             }));
             // Si email existe, bloqueamos campos
+
             setIsAutoComplete(true);
           } else {
             setIsAutoComplete(false);
+            setEmailInterno(""); // limpia el dato email por si acaso
           }
         } catch (err) {
           console.error("No se encontró el DNI:", err);
@@ -134,15 +139,13 @@ export default function ModalForm({ number, onClose }: Props) {
     formData.append("number", number.toString());
     formData.append("dni", form.dni);
 
-    // ✅ aseguramos envío de email
-    formData.append("email", form.email);
-
     if (isAutoComplete) {
       formData.append("name", form.name);
       formData.append("lastname", form.lastname);
       formData.append("secondLastname", form.secondLastname);
       formData.append("address", form.address);
       formData.append("phone", form.phone);
+      formData.append("email", emailInterno); // 👈 se usa el email oculto
     } else {
       Object.entries(form).forEach(([key, value]) => {
         if (value !== null && value !== undefined) {

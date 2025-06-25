@@ -25,7 +25,7 @@ export default async function handler(
     lastname: user.lastname,
     secondLastname: user.secondLastname ?? "",
     address: user.address ?? "",
-    email: user.email ?? "",
+    email: user.email,
     phone: user.phone ?? "",
   });
 }
