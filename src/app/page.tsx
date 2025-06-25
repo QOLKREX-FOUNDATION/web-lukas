@@ -66,7 +66,7 @@ export default function HomePage() {
             <p className="mb-2">
               <strong>Lukas Rojas</strong> es un niño esgrimista peruano que ha
               destacado en la categoría Sub-9. Dos veces campeon nacional
-              consecutivo 2024 y 2025 en las modalidades de FLorete y Sable, en
+              consecutivo 2024 y 2025 en las modalidades de Florete y Sable, en
               el 2024 representó al Perú en el Campeonato Sudamericano Infantil
               de Esgrima realizado en Curitiba - Brasil, donde obtuvo la medalla
               de <strong>bronce</strong> en la modalidad de sable masculino.
