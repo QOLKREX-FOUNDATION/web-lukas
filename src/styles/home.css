@@ -126,14 +126,14 @@
 
   .lukas-bio {
     font-size: 0.85rem;
-    margin-top: 17rem;
+    margin-top: 15rem;
     padding: 0.75rem;
     justify-content: center;
     font-size: 0.6rem;
   }
 
   .rifa-grid {
-    margin-top: 20rem;
+    margin-top: 15rem;
     display: flex; /*✅ activa la grilla */
     /* grid-template-columns: repeat(5, 50px); ✅ 10 columnas guales */
     /*gap: 0.5rem;  ✅ espacio entre números (ajustable) */
@@ -144,7 +144,7 @@
     grid-template-columns: repeat(5, 55px);
     gap: 0.4rem;
     justify-items: center;
-    margin-bottom: 13rem;
+    margin-bottom: 5rem;
   }
 
   .rifa-precios {
