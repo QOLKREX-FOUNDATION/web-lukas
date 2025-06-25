@@ -336,7 +336,10 @@ export default function ModalForm({ number, onClose }: Props) {
 
         <div className="modal-right">
           <div className="modal-right-inner">
-            <span>Sudamericano</span>
+            <span>Sudamericano Infatil</span>
+          </div>
+          <div className="modal-quito">
+            <span>de Esgrima - Quito 2025</span>
           </div>
           <Image
             src="https://res.cloudinary.com/dktfsty7b/image/upload/v1748911635/icono1_cvcaa2.png"

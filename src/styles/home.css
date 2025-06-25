@@ -135,6 +135,7 @@
   .rifa-grid {
     margin-top: 15rem;
     display: flex; /*✅ activa la grilla */
+    align-items: center;
     /* grid-template-columns: repeat(5, 50px); ✅ 10 columnas guales */
     /*gap: 0.5rem;  ✅ espacio entre números (ajustable) */
     /* justify-items: center;  ✅ centra los botones */
