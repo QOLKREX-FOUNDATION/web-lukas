@@ -11,7 +11,7 @@ export default function AdminDashboard() {
     if (!isAdmin()) {
       router.push("/admin/login");
     }
-  }, []);
+  }, [router]);
 
   return (
     <div className="dashboard">
@@ -47,7 +47,7 @@ function CrearRifa() {
       body: JSON.stringify({ titulo }),
     });
 
-    const data = await res.json();
+    //const data = await res.json();
     if (res.ok) {
       alert("Rifa creada con éxito");
       setTitulo("");
