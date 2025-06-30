@@ -106,7 +106,6 @@ export default async function handler(
           address,
           phone,
           email,
-          voucherUrl: cloudinaryResponse.secure_url,
           createdAt: new Date(),
         });
       }
@@ -118,14 +117,13 @@ export default async function handler(
         id_rifa,
         status: "pending",
         fec_buy: new Date(),
+        voucherUrl: cloudinaryResponse.secure_url,
       });
 
       if (!email) {
-        return res
-          .status(400)
-          .json({
-            message: "Falta el correo electrónico para enviar confirmación.",
-          });
+        return res.status(400).json({
+          message: "Falta el correo electrónico para enviar confirmación.",
+        });
       }
       // ✅ 7. Enviar correo
       await sendEmail({

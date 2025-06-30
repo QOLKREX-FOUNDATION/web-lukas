@@ -24,6 +24,11 @@
   display: block;
 }
 
+.titulo {
+  font-size: 15px;
+  color: #111827;
+}
+
 .loginBox Image {
   align-items: center;
 }
@@ -39,6 +44,12 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
+  color: #222;
+}
+
+.input::placeholder {
+  color: #999; /* ✅ Color gris del texto sugerido */
+  font-style: normal;
 }
 
 .button {
