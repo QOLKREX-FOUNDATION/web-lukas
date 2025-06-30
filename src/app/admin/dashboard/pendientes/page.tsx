@@ -35,7 +35,7 @@ export default function ValidarPendientesPage() {
     try {
       const res = await fetch("/api/admin/pendientes");
       const data = await res.json();
-      console.log("📦 Respuesta de pendientes:", data); // ⬅️ Asegúrate que hay datos
+
       setPendientes(data.pendientes);
     } catch (err) {
       console.error("Error cargando pendientes:", err);
@@ -48,7 +48,7 @@ export default function ValidarPendientesPage() {
       const res = await fetch(`/api/usuarios?dni=${ticket.dni}`);
       const data = await res.json();
       setUsuario(data);
-    } catch (err) {
+    } catch {
       console.error("No se pudo obtener datos del usuario");
     }
   };
