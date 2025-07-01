@@ -333,15 +333,6 @@ export default function ModalForm({ number, onClose }: Props) {
             Cerrar
           </div>
         </div>
-
-        <div className="modal-right">
-          <div className="modal-right-inner">
-            <span>Sudamericano Infatil</span>
-          </div>
-          <div className="modal-quito">
-            <span>de Esgrima - Quito 2025</span>
-          </div>
-        </div>
       </div>
     </div>
   );

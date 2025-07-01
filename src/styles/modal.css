@@ -267,14 +267,6 @@
     position: relative;
   }
 
-  .modal-right img {
-    max-width: 95px;
-    max-height: 95px;
-    margin: 0 auto;
-    margin-top: -3rem;
-    margin-bottom: 1rem;
-  }
-
   .modal-vertical-text {
     position: absolute;
     left: 0.2rem;
@@ -295,20 +287,8 @@
     writing-mode: vertical-rl; /* Pone el texto en vertical */
     transform: rotate(180deg);
     margin-left: -17rem;
-    margin-top: -3rem;
+    margin-top: -1rem;
     font-size: 0.7rem;
-    font-family: "Times New Roman", serif;
-    font-weight: bold;
-    align-items: center;
-    color: rgb(26, 21, 158);
-  }
-
-  .modal-quito {
-    writing-mode: vertical-rl; /* Pone el texto en vertical */
-    transform: rotate(180deg);
-    margin-left: -15rem;
-    margin-top: -6.8rem;
-    font-size: 0.6rem;
     font-family: "Times New Roman", serif;
     font-weight: bold;
     align-items: center;
@@ -317,8 +297,8 @@
 
   .modal-title {
     position: absolute;
-    top: 2rem;
-    left: 30%;
+    top: 1rem;
+    left: 25%;
     transform: translateX(-50%);
     font-size: 1.7rem;
     font-family: "Times New Roman", serif;
@@ -340,6 +320,7 @@
     width: 100%;
     align-items: center;
     padding-top: 1rem;
+    margin-top: 10rem;
   }
 
   .modal-left input,
