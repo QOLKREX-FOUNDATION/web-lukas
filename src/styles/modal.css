@@ -13,8 +13,8 @@
 
 /* ✅ Puedes controlar el tamaño del fondo modificando width, height y background-size */
 .modal-content {
-  background-image: url("https://res.cloudinary.com/dktfsty7b/image/upload/v1749492077/ticket-rifa2_i8vzun.png");
-  background-size: 115% 115%; /* Puedes cambiar por cover, contain, o ajustar en % */
+  background-image: url("/img/ticket.png");
+  background-size: 110% 100%; /* Puedes cambiar por cover, contain, o ajustar en % */
   background-repeat: no-repeat;
   background-position: center;
   width: 110%;
@@ -40,6 +40,7 @@
   justify-content: flex-start;
   gap: 0.3rem;
   margin-top: -1.5rem;
+  margin-left: 1.5rem;
 }
 
 /* ✅ Tamaño, bordes y espaciado de inputs */
@@ -60,7 +61,7 @@
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: -0.2rem;
-  margin-left: 5rem;
+  margin-left: 7rem;
 }
 
 .modal-title .black {
@@ -116,16 +117,16 @@
   padding-top: 1rem;
 }
 
-.modal-right img {
+/*.modal-right img {
   max-height: 300px;
   width: auto;
   max-width: 140%;
-  /*max-height: 90%;*/
+
   margin-left: -4rem;
   margin-top: 2rem;
   position: relative;
   top: -2rem;
-}
+}*/
 
 .modal-vertical-text {
   writing-mode: vertical-rl; /* Pone el texto en vertical */
@@ -133,27 +134,27 @@
     180deg
   ); /* Invierte la dirección para leerlo de arriba hacia abajo */
   font-family: "Times New Roman", serif;
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: black;
+  color: rgba(117, 117, 117, 0.13);
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: right;
 
   /* ✅ Para posicionarlo al lado izquierdo */
   height: 100%;
   padding: 0;
-  margin-left: -13rem; /* o -1.5rem o incluso -2rem si quieres más pegado */
+  margin-left: -11.5rem; /* o -1.5rem o incluso -2rem si quieres más pegado */
   gap: 1rem;
 }
 
 .modal-vertical-text .black {
-  color: black;
+  color: rgba(117, 117, 117, 0.256);
 }
 
 .modal-vertical-text .red {
-  color: red;
+  color: rgba(255, 0, 0, 0.307);
 }
 /* Botón cerrar */
 .modal-close {

@@ -205,7 +205,7 @@ export default function ModalForm({ number, onClose }: Props) {
     <div className="modal-overlay">
       <div className="modal-content" ref={modalRef}>
         <div className="modal-vertical-text">
-          <span className="black">TICKET</span>{" "}
+          <span className="black">Nro:</span>{" "}
           <span className="red">#{number}</span>
         </div>
 
@@ -341,12 +341,6 @@ export default function ModalForm({ number, onClose }: Props) {
           <div className="modal-quito">
             <span>de Esgrima - Quito 2025</span>
           </div>
-          <Image
-            src="https://res.cloudinary.com/dktfsty7b/image/upload/v1748911635/icono1_cvcaa2.png"
-            alt="Decoración"
-            width={160}
-            height={160}
-          />
         </div>
       </div>
     </div>
