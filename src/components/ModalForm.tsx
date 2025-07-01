@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
+//import Image from "next/image";
 import axios from "axios";
 import "@/styles/modal.css";
 
