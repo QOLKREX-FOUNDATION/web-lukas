@@ -52,10 +52,10 @@ export default function ValidarPendientesPage() {
       console.error("No se pudo obtener datos del usuario");
     }
   };
-
+  const [loading, setLoading] = useState(false);
   const validarTicket = async (aceptado: boolean) => {
     if (!selected) return;
-
+    setLoading(true);
     const res = await fetch("/api/admin/validar-ticket", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -67,7 +67,7 @@ export default function ValidarPendientesPage() {
     });
 
     const result = await res.json();
-    if (result.success) {
+    if (res.ok) {
       alert(aceptado ? "Ticket validado." : "Ticket rechazado.");
       setSelected(null);
       setUsuario(null);
@@ -75,6 +75,7 @@ export default function ValidarPendientesPage() {
     } else {
       alert("Error: " + result.message);
     }
+    setLoading(false);
   };
 
   return (
@@ -137,12 +138,14 @@ export default function ValidarPendientesPage() {
               <button
                 className={styles.success}
                 onClick={() => validarTicket(true)}
+                disabled={loading}
               >
                 <FaCheck /> Validar
               </button>
               <button
                 className={styles.danger}
                 onClick={() => validarTicket(false)}
+                disabled={loading}
               >
                 <FaTimes /> Rechazar
               </button>

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../lib/mongo";
 import { sendEmail } from "../../../lib/email";
+import { generateTicketImage } from "../../../lib/generateTicketImage";
 
 export default async function handler(
   req: NextApiRequest,
@@ -34,17 +35,28 @@ export default async function handler(
           { number, dni },
           { $set: { status: "confirmed", fec_confirm: new Date() } }
         );
-
+      const imagePath = await generateTicketImage(
+        number,
+        usuario.name,
+        usuario.lastname
+      );
       // Aquí podrías generar la imagen del ticket si la tienes y enviar el correo
       await sendEmail({
         to: usuario.email,
         subject: "¡Compra confirmada!",
         html: `
-          <p>Hola ${usuario.name} ${usuario.lastname},</p>
-          <p>Tu número <strong>#${number}</strong> ha sido confirmado exitosamente.</p>
-          <p>Gracias por apoyar el <strong>Sudamericano Infantil de Esgrima Quito - Ecuador</strong>.</p>
-          <p>¡Mucha suerte!</p>
-        `,
+    <p>Hola ${usuario.name} ${usuario.lastname},</p>
+    <p>Tu número <strong>#${number}</strong> ha sido confirmado exitosamente.</p>
+    <p>Gracias por apoyar a Lukas en su participación en el <strong>Sudamericano Infantil de Esgrima Quito - Ecuador</strong>.</p>
+    <p>¡Mucha suerte!</p>
+  `,
+        attachments: [
+          {
+            filename: `ticket-${number}.png`,
+            path: imagePath,
+            contentType: "image/png",
+          },
+        ],
       });
 
       return res.status(200).json({ message: "Confirmado y correo enviado" });
