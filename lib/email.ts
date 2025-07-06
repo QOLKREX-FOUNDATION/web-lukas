@@ -1,4 +1,5 @@
 // ✅ lib/email.ts
+import nodemailer from "nodemailer";
 import type { Attachment } from "nodemailer/lib/mailer";
 
 export async function sendEmail({
