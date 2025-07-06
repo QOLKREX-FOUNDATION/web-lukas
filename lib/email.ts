@@ -1,5 +1,5 @@
 // ✅ lib/email.ts
-import nodemailer from "nodemailer";
+import type { Attachment } from "nodemailer/lib/mailer";
 
 export async function sendEmail({
   to,
@@ -10,7 +10,7 @@ export async function sendEmail({
   to: string;
   subject: string;
   html: string;
-  attachments?: any[];
+  attachments?: Attachment[];
 }) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
