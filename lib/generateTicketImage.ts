@@ -1,8 +1,13 @@
 // lib/generateTicketImage.ts
-import { createCanvas, loadImage } from "canvas";
+import { createCanvas, loadImage, registerFont } from "canvas";
 import path from "path";
 import fs from "fs";
 import os from "os";
+
+// Registra la fuente personalizada (hazlo solo una vez)
+registerFont(path.join(process.cwd(), "public/fonts/timesnewroma-normal.ttf"), {
+  family: "Liberation Serif",
+});
 
 export async function generateTicketImage(
   number: number,
